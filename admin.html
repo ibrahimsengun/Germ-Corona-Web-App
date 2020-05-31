@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germ</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">,
+    <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon"/>
+
+    <script src="js/jquery-3.5.0.min.js"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</head>
+<body class="bg-screen">
+    <div class="container d-flex align-items-center flex-column">
+        <div class="row text-center pt-5">
+
+            <div class="col-4 border border-dark">
+                <h3 class="h3">Türkiye Günlük Veri Güncelleme</h3>
+                <div class="row">
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Günlük Vaka Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-num-daily-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-death-num-daily">Günlük Vefat Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-death-num-daily-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-heal-num-daily">Günlük İyileşen Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-heal-num-daily-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-test-num-daily">Günlük Test Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-test-num-daily-t">
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button class="btn btn-outline-dark" id="admin-daily-btn-t" onclick="UpdateDaily();">Güncelle</button>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <p id="error-daily" class="text-danger border border-danger" style="display: none;"></p>
+                    </div>
+                    <div class="col-12 alert alert-success" style="display: none;" id="alert-daily">Başarılı bir şekilde güncellendi</div>
+                </div>
+            </div>
+            <div class="col-4 border border-dark">
+                <h3 class="h3">Türkiye Genel Veri Güncelleme</h3>
+                <div class="row">
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Aktif Vaka Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-active-cases-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Yoğun Bakım Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-critical-cases-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Toplam Vaka Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-num-total-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Toplam Vefat Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-death-total-t">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Toplam İyileşen Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-heal-total-t">
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button class="btn btn-outline-dark" id="admin-general-btn-t" onclick="UpdateGeneral();">Güncelle</button>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <p id="error-general" class="text-danger border border-danger" style="display: none;"></p>
+                    </div>
+                    <div class="col-12 alert alert-success" style="display: none;" id="alert-general">Başarılı bir şekilde güncellendi</div>
+                </div>
+            </div>
+            <div class="col-4 border border-dark">
+                <h3 class="h3">Dünya Genel Veri Güncelleme</h3>
+                <div class="row">
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Aktif Vaka Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-active-cases-w">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Yoğun Bakım Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-critical-cases-w">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Toplam Vaka Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-num-total-w">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Toplam Vefat Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-death-total-w">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Toplam İyileşen Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-case-heal-total-w">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Yeni Vefat Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-new-deaths-w">
+                    </div>
+                    <div class="col-12 p-1">
+                        <label class="float-left" for="admin-case-num-daily">Yeni Vaka Sayısı:</label>
+                        <input class="float-right" type="text" id="admin-new-cases-w">
+                    </div>
+                    <div class="col-12 mt-4 mb-4">
+                        <button class="btn btn-outline-dark" id="admin-general-btn-w" onclick="UpdateWorld();">Güncelle</button>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <p id="error-world" class="text-danger border border-danger" style="display: none;"></p>
+                    </div>
+                    <div class="col-12 alert alert-success" style="display: none;" id="alert-world">Başarılı bir şekilde güncellendi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
